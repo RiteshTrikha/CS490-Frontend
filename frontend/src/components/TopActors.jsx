@@ -39,13 +39,13 @@ function TopActors() {
                 <div className="col-md-auto">
                     <Card className="p-4 mb-4">
                         <CardBody>
-                            <h1 className="mb-4">Top 5 Actors</h1>
+                            <h2 className="mb-4">Top 5 Actors</h2>
                             <Row>
                                 {topActors.map(actor => (
                                     <Card key={actor.id} className="m-2">
                                         <CardBody>
-                                            <h2>{actor.first_name} {actor.last_name}</h2>
-                                            <h4>Total Films: {actor.film_count}</h4>
+                                            <h4>{actor.first_name} {actor.last_name}</h4>
+                                            <h5>Total Films: {actor.film_count}</h5>
                                             <Button variant="primary"
                                                     onClick={() => retrieveActorDetails(actor.actor_id)}>
                                                 View Actor
@@ -66,9 +66,10 @@ function TopActors() {
                     <Modal.Body>
                         <h2>{actorDetails.first_name} {actorDetails.last_name}</h2>
                         <h3>Top Films:</h3>
-                        <ul>
+                        <ul style={{listStyleType: 'none', padding: 0}}>
                             {actorDetails.map(film => (
-                                <li key={film.id}>{film.title} (Rentals: {film.rental_count})</li>
+                                <li key={film.id} style={{marginBottom: '8px'}}>
+                                    <strong>{film.title}</strong> (Rentals: {film.rental_count})</li>
                             ))}
                         </ul>
                     </Modal.Body>
@@ -79,6 +80,8 @@ function TopActors() {
             </Modal>
         </div>
     );
+
+
 }
 
 export default TopActors;
