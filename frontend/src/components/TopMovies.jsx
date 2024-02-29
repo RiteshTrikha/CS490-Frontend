@@ -4,7 +4,7 @@ import { Card, Button, Modal } from 'react-bootstrap';
 
 function TopMovies({ storeId }) {
     const [movies, setMovies] = useState([]);
-    const [moviedetails, setMovieDetails] = useState(null);
+    const [movieDetails, setMovieDetails] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -56,6 +56,7 @@ function TopMovies({ storeId }) {
                                             <h4 className={`card-title ${calculateFontSize(movie.title)}`} style={{ whiteSpace: 'normal' }}>
                                                 {movie.title}
                                             </h4>
+                                            <p>Rentals: {movie.rentals}</p>
                                             <Button variant="primary" onClick={() => retrieveMovieDetails(movie.film_id)}>
                                                 View Film
                                             </Button>
@@ -71,13 +72,13 @@ function TopMovies({ storeId }) {
                 <Modal.Header closeButton>
                     <Modal.Title>Movie Details</Modal.Title>
                 </Modal.Header>
-                {moviedetails && (
+                {movieDetails && (
                     <Modal.Body>
-                        <h2>{moviedetails.title}</h2>
-                        <p><strong>Description:</strong> {moviedetails.description}</p>
-                        <p><strong>Release Year:</strong> {moviedetails.release_year}</p>
-                        <p><strong>Rental Rate:</strong> {moviedetails.rental_rate}</p>
-                        <p><strong>Length:</strong> {moviedetails.length} minutes</p>
+                        <h2>{movieDetails.title}</h2>
+                        <p><strong>Description:</strong> {movieDetails.description}</p>
+                        <p><strong>Release Year:</strong> {movieDetails.release_year}</p>
+                        <p><strong>Rental Rate:</strong> {movieDetails.rental_rate}</p>
+                        <p><strong>Length:</strong> {movieDetails.length} minutes</p>
                     </Modal.Body>
                 )}
                 <Modal.Footer>

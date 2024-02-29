@@ -55,8 +55,8 @@ function TopActors() {
                                 <Col key={actor.actor_id}>
                                     <Card className="h-100">
                                         <CardBody>
-                                            <h4>{actor.first_name} {actor.last_name}</h4>
-                                            <h5>Total Films Rented: {actor.film_count}</h5>
+                                            <h5>{actor.first_name} {actor.last_name}</h5>
+                                            <p>Total Films Rented: {actor.film_count}</p>
                                             <Button variant="primary" onClick={() => retrieveActorDetails(actor.actor_id)}>
                                                 View Actor
                                             </Button>
