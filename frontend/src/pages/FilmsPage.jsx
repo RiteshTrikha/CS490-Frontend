@@ -112,7 +112,7 @@ function FilmsPage() {
                                     <th>Genre</th>
                                     <th>Actors</th>
                                     {/* Add Actors column */}
-                                    <th>Action</th>
+                                    <th>View</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -124,7 +124,7 @@ function FilmsPage() {
                                         <td>{film.actors}</td>
                                         {/* Display actors for the film */}
                                         <td>
-                                            <Button variant="info"
+                                            <Button variant="primary"
                                                     onClick={() => viewFilmDetails(film.film_id)}>Details</Button>
                                         </td>
                                     </tr>
