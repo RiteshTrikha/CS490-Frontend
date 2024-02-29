@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {Card, CardBody, Row, Button, Modal} from 'react-bootstrap';
+import {Card, CardBody, Button, Modal, Row, Col} from 'react-bootstrap';
 
 function TopActors() {
     const [topActors, setTopActors] = useState([]);
@@ -34,29 +34,28 @@ function TopActors() {
     };
 
     return (
-        <div className="d-flex justify-content-right align-items-center pt-5">
+        <div className="pt-5">
             <div className="container">
-                <div className="col-md-auto">
-                    <Card className="p-4 mb-4">
-                        <CardBody>
-                            <h2 className="mb-4">Top 5 Actors</h2>
-                            <Row>
-                                {topActors.map(actor => (
-                                    <Card key={actor.id} className="m-2">
+                <Card className="p-4 mb-4">
+                    <CardBody>
+                        <h2 className="mb-4">Top 5 Actors</h2>
+                        <Row xs={1} md={2} lg={3} xl={4} className="g-4">
+                            {topActors.map(actor => (
+                                <Col key={actor.id}>
+                                    <Card className="h-100">
                                         <CardBody>
                                             <h4>{actor.first_name} {actor.last_name}</h4>
                                             <h5>Total Films: {actor.film_count}</h5>
-                                            <Button variant="primary"
-                                                    onClick={() => retrieveActorDetails(actor.actor_id)}>
+                                            <Button variant="primary" onClick={() => retrieveActorDetails(actor.actor_id)}>
                                                 View Actor
                                             </Button>
                                         </CardBody>
                                     </Card>
-                                ))}
-                            </Row>
-                        </CardBody>
-                    </Card>
-                </div>
+                                </Col>
+                            ))}
+                        </Row>
+                    </CardBody>
+                </Card>
             </div>
             <Modal show={showModal} onHide={handleCloseModal} centered>
                 <Modal.Header closeButton>
@@ -80,8 +79,6 @@ function TopActors() {
             </Modal>
         </div>
     );
-
-
 }
 
 export default TopActors;

@@ -11,7 +11,7 @@ function App() {
             <Navbar bg="dark" variant="dark" expand="lg">
                 <Container>
                     <Navbar.Brand href='/'>
-                        Sakila Cinema
+                        Sakila Blockbuster
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
                     <Navbar.Collapse id="basic-navbar-nav">
