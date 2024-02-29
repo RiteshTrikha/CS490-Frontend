@@ -15,7 +15,7 @@ function TopActors() {
     }, [selectedStore]); // Fetch top actors whenever selectedStore changes
 
     const fetchTopActors = () => {
-        let url = `http://localhost:5000/api/store/${selectedStore}/top-actors`;
+        let url = selectedStore ? `http://localhost:5000/api/store/${selectedStore}/top-actors` : `http://localhost:5000/api/top-actors`;
 
         axios.get(url)
             .then(response => {
