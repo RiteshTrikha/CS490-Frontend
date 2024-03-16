@@ -4,8 +4,8 @@ import { Navbar, Container, Nav, NavDropdown, Row, Col } from "react-bootstrap";
 import IndexPage from './pages/IndexPage';
 import FilmsPage from './pages/FilmsPage';
 import CustomersPage from './pages/CustomersPage';
-import TopActors from './components/TopActors';
-import TopMovies from './components/TopMovies';
+import TopActors from './pages/TopActors';
+import TopMovies from './pages/TopMovies';
 
 function App() {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import TopMovies from "../components/TopMovies";
-import TopActors from "../components/TopActors";
+import TopMovies from "./TopMovies";
+import TopActors from "./TopActors";
 import { useParams } from 'react-router-dom';
 
 function IndexPage() {

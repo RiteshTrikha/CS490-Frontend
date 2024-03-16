@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, CardBody, Button, Modal, Row, Col } from 'react-bootstrap';
+import { Card, CardBody, Button, Row, Col } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
+import ActorDetailsModal from '../components/ActorDetailsModal';
 
-function TopActors() {
+function TopActorsPage() {
     const [topActors, setTopActors] = useState([]);
-    const [actorDetails, setActorDetails] = useState(null);
+    const [selectedActorId, setSelectedActorId] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const location = useLocation();
     const selectedStore = location.pathname.split('/').pop(); // Extract store number from URL
@@ -26,20 +27,9 @@ function TopActors() {
             });
     };
 
-    const retrieveActorDetails = (actorId) => {
-        axios.get(`http://localhost:5000/api/actor/${actorId}/top-films`)
-            .then(response => {
-                setActorDetails(response.data);
-                setShowModal(true);
-            })
-            .catch(error => {
-                console.error('Error fetching actor details:', error);
-            });
-    };
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-        setActorDetails(null);
+    const handleActorDetails = (actorId) => {
+        setSelectedActorId(actorId);
+        setShowModal(true);
     };
 
     const storeTitle = selectedStore ? ` - Store ${selectedStore}` : '';
@@ -57,7 +47,7 @@ function TopActors() {
                                         <CardBody>
                                             <h5>{actor.first_name} {actor.last_name}</h5>
                                             <p>Total Films Rented: {actor.film_count}</p>
-                                            <Button variant="primary" onClick={() => retrieveActorDetails(actor.actor_id)}>
+                                            <Button variant="primary" onClick={() => handleActorDetails(actor.actor_id)}>
                                                 View Actor
                                             </Button>
                                         </CardBody>
@@ -68,28 +58,9 @@ function TopActors() {
                     </CardBody>
                 </Card>
             </div>
-            <Modal show={showModal} onHide={handleCloseModal} centered>
-                <Modal.Header closeButton>
-                    <Modal.Title>Actor Movie Rentals</Modal.Title>
-                </Modal.Header>
-                {actorDetails && (
-                    <Modal.Body>
-                        <h2>{actorDetails.first_name} {actorDetails.last_name}</h2>
-                        <ul style={{ listStyleType: 'none', padding: 0 }}>
-                            {actorDetails.map(film => (
-                                <li key={film.film_id} style={{ marginBottom: '8px' }}>
-                                    <strong>{film.title}</strong> (Rentals: {film.rental_count})
-                                </li>
-                            ))}
-                        </ul>
-                    </Modal.Body>
-                )}
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseModal}>Close</Button>
-                </Modal.Footer>
-            </Modal>
+            <ActorDetailsModal actorId={selectedActorId} show={showModal} onClose={() => setShowModal(false)} />
         </div>
     );
 }
 
-export default TopActors;
+export default TopActorsPage;
